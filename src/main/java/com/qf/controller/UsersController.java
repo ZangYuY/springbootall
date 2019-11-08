@@ -9,11 +9,10 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsersController {
@@ -51,12 +50,12 @@ public class UsersController {
         return "redirect:loginP";
     }
     @RequestMapping("showPage")
-    public String showPage(HttpServletRequest request, @RequestParam(defaultValue = "1") Integer pageNo,
+    public String showPage(Model model, @RequestParam(defaultValue = "1") Integer pageNo,
                            @RequestParam(defaultValue = "2") Integer pageNum){
 
         PageInfo<Users> users = usersService.getUsers(pageNo,pageNum);
         //System.out.println("users:"+users);
-        request.setAttribute("users",users);
+        model.addAttribute("users",users);
         return "showPage";
     }
 
@@ -80,5 +79,10 @@ public class UsersController {
     @RequestMapping("unauth")
     public String unauth(){
         return "unauth";
+    }
+
+    @RequestMapping("ech")
+    public String ech(){
+        return "echarts";
     }
 }
