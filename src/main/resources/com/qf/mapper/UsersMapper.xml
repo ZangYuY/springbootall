@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.UsersMapper">
+
+    <insert id="addUser" parameterType="users">
+        insert into users(username,password) values (#{username},#{password})
+    </insert>
+    <delete id="delUser">
+        delete * from users where uid=#{uid}
+    </delete>
+    <update id="updUser">
+        update users set password=#{password} where username=#{username}
+    </update>
+
+    <select id="getUsers" resultType="users">
+        select * from users
+    </select>
+
+    <select id="getUserByUsername" resultType="users">
+        select * from users where username=#{username}
+    </select>
+
+    <select id="getRoleNameByUserName" resultType="userRoles">
+        select * from user_roles where username=#{username}
+    </select>
+</mapper>

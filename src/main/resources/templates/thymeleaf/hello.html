@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+
+    <script src="js/jquery-3.4.1.js"></script>
+
+    <!--<link rel="stylesheet" type="text/css" th:href="@{css/style2.css}" />-->
+    <link rel="stylesheet" type="text/css" href="/css/style2.css" />
+
+    <script>
+        $(function () {
+            $("#btn").click(function () {
+                alert(1);
+                $.get("ajax1",{uname:"user"},function (data) {
+                    alert(data);
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+hello templates/HTML:<span th:text="${uname}"></span>
+<br>
+<button id="btn">ajax</button><br>
+
+<img src="img/1.gif">
+<img th:src="@{img/2.gif}">
+
+</body>
+</html>

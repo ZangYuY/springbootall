@@ -1,0 +1,16 @@
+body{
+    color: red;
+}
+img{
+    width: 300px;
+    height: 500px;
+}
+table{
+    border: blue 2px solid;
+}
+table tr{
+    border: blue 2px solid;
+}
+table tr td{
+    border: blue 2px solid;
+}
