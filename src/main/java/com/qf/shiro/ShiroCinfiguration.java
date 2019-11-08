@@ -2,6 +2,7 @@ package com.qf.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.qf.realm.MyRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -46,5 +47,12 @@ public class ShiroCinfiguration {
     @Bean
     public ShiroDialect shiroDialect(){
         return new ShiroDialect();
+    }
+
+    @Bean(name = "credentialsMatcher")
+    public HashedCredentialsMatcher credentialsMatcher(){
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("md5");
+        return credentialsMatcher;
     }
 }
