@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <title>老师界面--待审核假条</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>序号</th>
+        <th>申请人</th>
+        <th>开始日期</th>
+        <th>结束日期</th>
+        <th>请假理由</th>
+        <th>操作</th>
+    </tr>
+        <tr th:each="holiday,var:${holidayList}">
+            <td th:text="${var.count}"></td>
+            <td th:text="${holiday.users.username}"></td>
+            <td th:text="${holiday.startDate}"></td>
+            <td th:text="${holiday.endDate}"></td>
+            <td th:text="${holiday.reason}"></td>
+            <td><a th:href="@{updateHoliday(hid=${holiday.hid})}">审批通过</a> </td>
+        </tr>
+</table>
+</body>
+</html>
