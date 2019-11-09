@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class QingjiaController {
@@ -30,5 +32,30 @@ public class QingjiaController {
 
         qingjiaService.addQingjia(holiday);
         return "redirect:showPage";
+    }
+
+    /**
+     * 查看老师审批的假条列表
+     *
+     * @return
+     */
+    @RequestMapping("aboQing")
+    public String aboQing(HttpSession session, HttpServletRequest request){
+        Users user1 = (Users) session.getAttribute("users");
+        List<Holiday> holidayList = qingjiaService.getApproveHolidayList(user1.getUsername());
+       /* for (Holiday holiday : holidayList){
+            System.out.println(holiday);
+        }*/
+         System.out.println("holidayList:"+holidayList);
+
+        request.setAttribute("holidayList",holidayList);
+        return "teaQing";
+    }
+
+    @RequestMapping("updateHoliday")
+    public String updateHoliday(int hid,HttpSession session){
+        Users user1 = (Users) session.getAttribute("users");
+        qingjiaService.updQingjiaStatus(hid,user1.getUsername());
+        return "redirect:aboQing";
     }
 }
