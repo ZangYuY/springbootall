@@ -4,13 +4,19 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/qingjia
+    url: jdbc:mysql://localhost:3306/qingjia_springboot
     username: root
     password: 123456
     type: com.mchange.v2.c3p0.ComboPooledDataSource
 
   thymeleaf:
     prefix: classpath:/templates/thymeleaf/
+
+#  activiti:
+#  database-schema-update: true
+#  check-process-definitions: false
+#  process-definition-location-prefix: classpath:/processes/
+
 
 mybatis:
   type-aliases-package: com.qf.pojo
