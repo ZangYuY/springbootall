@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UsersController {
     @Autowired
     private UsersService usersService;
     @Autowired
     private SecurityManager securityManager;
+
 
     public UsersService getUsersService() {
         return usersService;
@@ -35,13 +38,18 @@ public class UsersController {
     }
 
     @RequestMapping("login")
-    public String login(Users users){
+    public String login(Users users , HttpSession session){
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(users.getUsername(),users.getPassword());
         try{
             subject.login(usernamePasswordToken);
             if(subject.isAuthenticated()){
+
+                Users userByUsername = usersService.getUserByUsername(users.getUsername());
+
+
+                session.setAttribute("users",userByUsername);
                 return "redirect:showPage";
             }
         }catch (Exception e){
