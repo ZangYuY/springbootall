@@ -25,8 +25,8 @@ public class QingjiaController {
 
         Users user1 = (Users) session.getAttribute("users");
         holiday.setUsers(user1);
-        System.out.println("user1:"+user1);
-        System.out.println("holiday:"+holiday);
+      //  System.out.println("user1:"+user1);
+       // System.out.println("holiday:"+holiday);
 
         qingjiaService.addQingjia(holiday);
         return "redirect:showPage";
