@@ -11,4 +11,25 @@
     <update id="updQingjiaStatus">
         update holiday set state=1 where hid=#{arg0}
     </update>
+
+    <resultMap id="holidayMap" type="holiday">
+        <id property="hid" column="hid"></id>
+        <result property="startDate" column="startDate"></result>
+        <result property="endDate" column="endDate"></result>
+        <result property="reason" column="reason"></result>
+        <association property="users" javaType="users" column="uid">
+            <id column="uid" property="uid"></id>
+            <result property="username" column="username"></result>
+            <result property="password" column="password"></result>
+        </association>
+    </resultMap>
+
+    <select id="getApproveHolidayList" resultMap="holidayMap">
+        select * from holiday inner join users on users.uid=holiday.uid and
+        hid in
+        <foreach collection="list" item="i" separator="," open="(" close=")">
+            #{i}
+        </foreach>
+    </select>
+
 </mapper>
