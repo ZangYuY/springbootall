@@ -29,6 +29,10 @@ public class ShiroCinfiguration {
         map.put("/**","authc");
 
         map.put("/addPage","roles[role1]");
+        map.put("/addQingPage","roles[role1]");
+
+        map.put("/aboQing","roles[role2]");
+        map.put("/updateHoliday","roles[role2]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }
